@@ -4,7 +4,10 @@ import io.ktor.client.call.*
 import io.ktor.client.request.*
 import io.ktor.server.testing.*
 import org.junit.Test
-import org.xmlunit.assertj3.XmlAssert
+import org.xml.sax.InputSource
+import java.io.StringReader
+import javax.xml.parsers.DocumentBuilderFactory
+import kotlin.test.assertEquals
 
 class DataHandlingTest {
     @Test
@@ -14,7 +17,10 @@ class DataHandlingTest {
         }
 
         client.get("/xml").apply {
-            XmlAssert.assertThat(this.body<String>()).isValid
+            val dbf = DocumentBuilderFactory.newInstance()
+            val db = dbf.newDocumentBuilder()
+            assertEquals(
+                db.parse(InputSource(StringReader(this.body<String>()))).xmlEncoding, "UTF-8")
         }
     }
 }
