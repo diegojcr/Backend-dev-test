@@ -139,6 +139,141 @@ class MainTemplate<T : Template<FlowContent>>(private val template: T, val pageT
                             background-color: transparent;
                           }
                         }
+                        .skins-grid {
+                            display: grid;
+                            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+                            gap: 1.5rem;
+                            padding: 1rem;
+                            width: 100%;
+                            box-sizing: border-box;
+                        }
+                        
+                        .skin-card {
+                            background: white;
+                            border-radius: 8px;
+                            padding: 1.2rem;
+                            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+                            transition: all 0.3s ease;
+                            display: flex;
+                            flex-direction: column;
+                            height: 100%;
+                            box-sizing: border-box;
+                        }
+                        
+                        .skin-card:hover {
+                            transform: translateY(-5px);
+                            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+                        }
+                        .skin-card h3 {
+                            margin: 0.5rem 0;
+                            font-size: 1.1rem;
+                            color: #333;
+                            line-height: 1.3;
+                        }
+                        
+                        .skin-card p {
+                            margin: 0.3rem 0;
+                            font-size: 0.9rem;
+                            color: #666;
+                        }
+                        
+                        @media (max-width: 768px) {
+                            .skins-grid {
+                                grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+                            }
+                        }
+                        
+                        @media (max-width: 480px) {
+                            .skins-grid {
+                                grid-template-columns: 1fr;
+                            }
+                        }
+                        .crates-list {
+                            color: #666;
+                            margin-top: auto;
+                            padding-top: 0.5rem;
+                            border-top: 1px dashed #eee;
+                        }
+                        
+                        .crates-list span {
+                            word-break: break-all;
+                        }
+                        .search-container {
+                            margin-bottom: 2rem;
+                            position: relative;
+                        }
+                        
+                        .search-container form {
+                            display: flex;
+                            gap: 0.5rem;
+                        }
+                        
+                        .search-container input {
+                            flex-grow: 1;
+                            padding: 0.75rem;
+                            border: 1px solid #ddd;
+                            border-radius: 4px;
+                            font-size: 1rem;
+                        }
+                        
+                        .search-container button {
+                            padding: 0.75rem 1.5rem;
+                            background-color: #4CAF50;
+                            color: white;
+                            border: none;
+                            border-radius: 4px;
+                            cursor: pointer;
+                        }
+                        
+                        .htmx-indicator {
+                            display: none;
+                            position: absolute;
+                            right: 1rem;
+                            top: 50%;
+                            transform: translateY(-50%);
+                            color: #666;
+                        }
+                        
+                        .htmx-request .htmx-indicator {
+                            display: block;
+                        }
+                        
+                        .htmx-request form button {
+                            visibility: hidden;
+                        }
+                        form {
+                            max-width: 400px;
+                            margin: 2rem auto;
+                            padding: 2rem;
+                            border: 1px solid #ddd;
+                            border-radius: 8px;
+                            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+                        }
+                        
+                        form div {
+                            margin-bottom: 1rem;
+                        }
+                        
+                        form label {
+                            display: block;
+                            margin-bottom: 0.5rem;
+                        }
+                        
+                        form input {
+                            width: 100%;
+                            padding: 0.5rem;
+                            border: 1px solid #ddd;
+                            border-radius: 4px;
+                        }
+                        
+                        form button {
+                            background: #4CAF50;
+                            color: white;
+                            border: none;
+                            padding: 0.75rem 1.5rem;
+                            border-radius: 4px;
+                            cursor: pointer;
+                        }
                     """.trimIndent()
                 )
             }
@@ -157,13 +292,13 @@ class MainTemplate<T : Template<FlowContent>>(private val template: T, val pageT
                         ul {
                             li { a(href = "/") { +"Home" } }
                             li { span("separator") { +"🚀" } }
-                            li { a(href = "/link") { +"Category" } }
+                            li { a(href = "/skins") { +"Skins" } }
                             li { span("separator") { +"🚀" } }
-                            li { a(href = "/link") { +"Category" } }
+                            li { a(href = "/agents") { +"Agents" } }
                             li { span("separator") { +"🚀" } }
-                            li { a(href = "/link") { +"Category" } }
+                            li { a(href = "/crates") { +"Crates" } }
                             li { span("separator") { +"🚀" } }
-                            li { a(href = "/link") { +"Category" } }
+                            li { a(href = "/keys") { +"Keys" } }
                         }
                     }
 

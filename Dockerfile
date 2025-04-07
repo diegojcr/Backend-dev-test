@@ -2,6 +2,7 @@ FROM eclipse-temurin:20 as build
 
 WORKDIR /tmp/build
 COPY . .
+RUN chmod +x gradlew
 RUN ./gradlew shadowJar
 
 FROM eclipse-temurin:20

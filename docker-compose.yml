@@ -1,0 +1,26 @@
+services:
+  app:
+    build: .
+    ports:
+      - "8080:8080"  # Mapea el puerto 8080 del contenedor al host
+    environment:
+        - TZ=America/Guatemala
+        - DB_URL=jdbc:postgresql://db:5432/counterstrike      # URL para conectar a PostgreSQL
+        - DB_USER=postgres
+        - DB_PASSWORD=123456
+    depends_on:
+      - db
+    restart: unless-stopped
+
+  db:
+    image: postgres:15  # Usa PostgreSQL 15
+    environment:
+      - POSTGRES_DB=counterstrike
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=123456
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+
+volumes:
+  postgres_data:  # Persistencia de datos
